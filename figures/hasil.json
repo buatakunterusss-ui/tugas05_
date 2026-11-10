@@ -1,0 +1,140 @@
+{
+ "Model A (tanpa batas)": {
+  "train_acc": 1.0,
+  "test_acc": 0.9122807017543859,
+  "recall_ganas": 0.875,
+  "precision_ganas": 0.8888888888888888,
+  "f1_ganas": 0.8818897637795275,
+  "auc": 0.9047897196261682,
+  "cv": 0.912125446359261,
+  "depth": 7,
+  "leaves": 20,
+  "cm": [
+   [
+    100,
+    7
+   ],
+   [
+    8,
+    56
+   ]
+  ]
+ },
+ "Model B (max_depth=3)": {
+  "train_acc": 0.9673366834170855,
+  "test_acc": 0.9298245614035088,
+  "recall_ganas": 0.90625,
+  "precision_ganas": 0.90625,
+  "f1_ganas": 0.90625,
+  "auc": 0.9383031542056074,
+  "cv": 0.9174507064120478,
+  "depth": 3,
+  "leaves": 8,
+  "cm": [
+   [
+    101,
+    6
+   ],
+   [
+    6,
+    58
+   ]
+  ]
+ },
+ "imp": [
+  {
+   "Fitur": "concave points_mean",
+   "Pentingnya": 0.801
+  },
+  {
+   "Fitur": "texture_mean",
+   "Pentingnya": 0.1059
+  },
+  {
+   "Fitur": "area_mean",
+   "Pentingnya": 0.072
+  },
+  {
+   "Fitur": "radius_mean",
+   "Pentingnya": 0.0211
+  },
+  {
+   "Fitur": "smoothness_mean",
+   "Pentingnya": 0.0
+  },
+  {
+   "Fitur": "perimeter_mean",
+   "Pentingnya": 0.0
+  },
+  {
+   "Fitur": "compactness_mean",
+   "Pentingnya": 0.0
+  },
+  {
+   "Fitur": "concavity_mean",
+   "Pentingnya": 0.0
+  },
+  {
+   "Fitur": "symmetry_mean",
+   "Pentingnya": 0.0
+  },
+  {
+   "Fitur": "fractal dimension_mean",
+   "Pentingnya": 0.0
+  }
+ ],
+ "n_train": 398,
+ "n_test": 171,
+ "stats": {
+  "radius_mean": [
+   6.981,
+   13.37,
+   28.11
+  ],
+  "texture_mean": [
+   9.71,
+   18.84,
+   39.28
+  ],
+  "perimeter_mean": [
+   43.79,
+   86.24,
+   188.5
+  ],
+  "area_mean": [
+   143.5,
+   551.1,
+   2501.0
+  ],
+  "smoothness_mean": [
+   0.05263,
+   0.09587,
+   0.1634
+  ],
+  "compactness_mean": [
+   0.01938,
+   0.09263,
+   0.3454
+  ],
+  "concavity_mean": [
+   0.0,
+   0.06154,
+   0.4268
+  ],
+  "concave points_mean": [
+   0.0,
+   0.0335,
+   0.2012
+  ],
+  "symmetry_mean": [
+   0.106,
+   0.1792,
+   0.304
+  ],
+  "fractal dimension_mean": [
+   0.04996,
+   0.06154,
+   0.09744
+  ]
+ }
+}

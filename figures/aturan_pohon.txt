@@ -1,0 +1,22 @@
+|--- concave points_mean <= 0.05
+|   |--- area_mean <= 696.25
+|   |   |--- texture_mean <= 21.56
+|   |   |   |--- class: 0
+|   |   |--- texture_mean >  21.56
+|   |   |   |--- class: 0
+|   |--- area_mean >  696.25
+|   |   |--- texture_mean <= 18.68
+|   |   |   |--- class: 0
+|   |   |--- texture_mean >  18.68
+|   |   |   |--- class: 1
+|--- concave points_mean >  0.05
+|   |--- texture_mean <= 15.43
+|   |   |--- concave points_mean <= 0.08
+|   |   |   |--- class: 0
+|   |   |--- concave points_mean >  0.08
+|   |   |   |--- class: 1
+|   |--- texture_mean >  15.43
+|   |   |--- radius_mean <= 14.43
+|   |   |   |--- class: 1
+|   |   |--- radius_mean >  14.43
+|   |   |   |--- class: 1

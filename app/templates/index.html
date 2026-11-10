@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Klasifikasi Tumor Payudara - Decision Tree</title>
+<style>
+  :root { --bg:#f4f6f9; --card:#fff; --ink:#1f2937; --muted:#6b7280; --accent:#2f5d9e; --ok:#1d7a46; --bad:#b42318; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background:var(--bg); color:var(--ink); }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 24px 16px 48px; }
+  h1 { font-size: 1.5rem; margin: 0 0 4px; }
+  p.sub { color: var(--muted); margin: 0 0 20px; }
+  .card { background:var(--card); border-radius:12px; padding:20px; box-shadow:0 1px 3px rgba(0,0,0,.08); }
+  .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:14px; }
+  label { display:block; font-size:.85rem; font-weight:600; margin-bottom:4px; }
+  input[type=text] { width:100%; padding:9px 10px; border:1px solid #d1d5db; border-radius:8px; font-size:1rem; }
+  input:focus { outline:2px solid var(--accent); border-color:transparent; }
+  .row { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+  button { padding:10px 18px; border:0; border-radius:8px; font-size:.95rem; cursor:pointer; }
+  .primary { background:var(--accent); color:#fff; font-weight:600; }
+  .ghost { background:#e8edf5; color:var(--ink); }
+  .result { margin-top:20px; padding:18px; border-radius:10px; border-left:6px solid; }
+  .result.jinak { background:#e8f5ee; border-color:var(--ok); }
+  .result.ganas { background:#fdecea; border-color:var(--bad); }
+  .result h2 { margin:0 0 6px; font-size:1.25rem; }
+  .err { margin-top:16px; color:var(--bad); font-weight:600; }
+  .note { margin-top:20px; font-size:.8rem; color:var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Klasifikasi Tumor Payudara</h1>
+  <p class="sub">Model Decision Tree (max_depth=3) dilatih pada dataset Breast Cancer Wisconsin. Masukkan hasil pengukuran inti sel untuk memprediksi tumor ganas atau jinak.</p>
+  <form method="post" class="card" id="form">
+    <div class="grid">
+      {% for f in fields %}
+      <div>
+        <label for="{{ f.id }}">{{ f.label }} <span style="font-weight:400;color:#6b7280">({{ f.key }})</span></label>
+        <input type="text" inputmode="decimal" id="{{ f.id }}" name="{{ f.id }}" value="{{ values[f.id] }}" required>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="row">
+      <button class="primary" type="submit">Prediksi</button>
+      <button class="ghost" type="button" onclick="fillExample('jinak')">Isi contoh jinak</button>
+      <button class="ghost" type="button" onclick="fillExample('ganas')">Isi contoh ganas</button>
+    </div>
+    {% if error %}<div class="err">{{ error }}</div>{% endif %}
+    {% if result %}
+    <div class="result {{ result.kelas }}">
+      <h2>Hasil: {{ result.label }}</h2>
+      <div>Probabilitas jinak: <b>{{ result.prob_jinak }}%</b> &nbsp;|&nbsp; Probabilitas ganas: <b>{{ result.prob_ganas }}%</b></div>
+    </div>
+    {% endif %}
+  </form>
+  <p class="note">Aplikasi ini untuk keperluan tugas kuliah dan bukan alat diagnosis medis.</p>
+</div>
+<script>
+  const EX = {{ examples | tojson }};
+  const IDS = {{ fields | map(attribute='id') | list | tojson }};
+  const KEYS = {{ fields | map(attribute='key') | list | tojson }};
+  function fillExample(k) {
+    IDS.forEach((id, i) => { document.getElementById(id).value = EX[k][KEYS[i]]; });
+  }
+</script>
+</body>
+</html>
